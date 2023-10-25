@@ -10,17 +10,17 @@
             <div class="grid grid-cols-4 gap-4">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        Cadastrar veículos
+                        <a href="{{ url('/veiculos/novo') }}">Cadastrar veículos</a>
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        Cadastrar marcas
+                        <a href="{{ url('/marcas/nova') }}">Cadastrar marcas</a>
                     </div>
                 </div>
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        Cadastrar modelos
+                        <a href="{{ url('/modelos/novo') }}">Cadastrar modelos</a>
                     </div>
                 </div>
             </div>

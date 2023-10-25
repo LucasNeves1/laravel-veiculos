@@ -29,4 +29,9 @@ class ModelsController extends Controller
         ]);
         return "Modelo criado com sucesso";
     }
+
+    public function getAll() {
+        $models = Models::all();
+        return $models;
+    }
 }

@@ -12,11 +12,8 @@ class Veiculo extends Model
     protected $fillable = [
         'year',
         'price',
-    ];
-
-    protected $casts = [
-        'brand_id' => 'integer',
-        'model_id' => 'integer',
+        'brand_id',
+        'model_id',
     ];
 
     public function brand()
@@ -26,6 +23,6 @@ class Veiculo extends Model
 
     public function model()
     {
-        return $this->belongsTo(Model::class, 'model_id', 'id');
+        return $this->belongsTo(Models::class, 'model_id', 'id');
     }
 }
