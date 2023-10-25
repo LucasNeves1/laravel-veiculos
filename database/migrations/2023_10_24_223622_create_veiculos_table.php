@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('veiculos', function (Blueprint $table) {
             $table->id();
-            $table->string('brand');
-            $table->string('model');
             $table->integer('year');
             $table->decimal('price', 10, 2);
             $table->timestamps();
+
+            $table->unsignedBigInteger('brand_id');
+            // Define a relação de chave estrangeira
+            $table->foreign('brand_id')->references('id')->on('brands');
+
+            $table->unsignedBigInteger('model_id');
+            // Define a relação de chave estrangeira
+            $table->foreign('model_id')->references('id')->on('models');
         });
     }
 

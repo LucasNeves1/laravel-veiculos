@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ModelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,13 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/marcas', [BrandController::class, 'index'])->name('marcas');
+    Route::get('/marcas/nova', [BrandController::class, 'create']);
+    Route::post('/marcas/nova', [BrandController::class, 'store'])->name('criar_marca');
+
+    //Route::get('/modelos/novo', [ModelsController::class, 'index']);
+    Route::get('/modelos/novo', [ModelsController::class, 'create']);
+    Route::post('/modelos/novo', [ModelsController::class, 'store'])->name('criar_modelo');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

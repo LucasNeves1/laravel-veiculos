@@ -11,10 +11,7 @@ class Models extends Model
 
     protected $fillable = [
         'name',
-    ];
-
-    protected $casts = [
-        'brand_id' => 'integer',
+        'brand_id'
     ];
 
     public function brand()
