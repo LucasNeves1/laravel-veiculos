@@ -30,6 +30,11 @@
                 <input type="number" name="year" id="year" value="{{ $veiculo->year }}">
                 <button class="bg-transparent text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded">Atualizar</button>
             </form>
+            <form action="{{ route('veiculos.destroy', $veiculo) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este veículo?')">Excluir</button>
+            </form>
         </div>
     </div>
 </x-app-layout>

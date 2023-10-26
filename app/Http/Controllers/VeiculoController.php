@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Veiculo;
+use Illuminate\Support\Facades\View;
+
 
 class VeiculoController extends Controller
 {
+    public function __construct()
+    {
+        $brands = app('App\Http\Controllers\BrandController')->getAll();
+        $models = app('App\Http\Controllers\ModelsController')->getAll();
+
+        View::share('brands', $brands);
+        View::share('models', $models);
+    }
+
     public function index()
     {
         $vehicles = Veiculo::with(['brand', 'model'])->get();
@@ -22,17 +33,6 @@ class VeiculoController extends Controller
         $veiculo = Veiculo::find($id);
 
         if ($veiculo) {
-            // Se encontrado, você pode retornar uma view com os detalhes do veículo
-
-            $brandsAndModels = $this->getBrandsAndModels();
-
-            // Combine as informações do veículo com as marcas e modelos
-            $data = [
-                'veiculo' => $veiculo,
-                'brands' => $brandsAndModels['brands'],
-                'models' => $brandsAndModels['models'],
-            ];
-            
             return view('veiculos.update', ['veiculo' => $veiculo]);
         } 
     }

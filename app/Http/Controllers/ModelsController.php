@@ -30,6 +30,28 @@ class ModelsController extends Controller
         return "Modelo criado com sucesso";
     }
 
+    public function update(Request $request, Models $model)
+    {
+        $request->validate([
+            'brand_id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $veiculo->update([
+            'brand_id' => $request->brand_id,
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('modelos.list')->with('success', 'Modelo atualizado com sucesso!');
+    }
+
+
+    public function destroy(Models $modelo)
+    {
+        $modelo->delete();
+        return redirect()->route('modelos.list')->with('success', 'Modelo excluído com sucesso!');
+    }
+
     public function getAll() {
         $models = Models::all();
         return $models;

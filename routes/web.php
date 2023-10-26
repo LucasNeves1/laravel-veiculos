@@ -35,14 +35,18 @@ Route::middleware('auth')->group(function () {
     //Route::get('/modelos/novo', [ModelsController::class, 'index']);
 
     Route::prefix('modelos')->group(function () {
+        Route::get('/', [ModelsController::class, 'index'])->name('modelos.list');
         Route::get('/novo', [ModelsController::class, 'create']);
         Route::post('/novo', [ModelsController::class, 'store'])->name('criar_modelo');
+        Route::get('/editar/{modelo}', [ModelsController::class, 'show']);
+        Route::put('/editar/{modelo}', [ModelsController::class, 'update'])->name('atualizar_modelo');
+        Route::delete('/{modelo}', [ModelsController::class, 'destroy'])->name('modelo.destroy');
     });
 
     Route::prefix('veiculos')->group(function () {
         Route::get('/', [VeiculoController::class, 'index'])->name('veiculos.list');
-        Route::get('/editar/{id}', [VeiculoController::class, 'show']);
-        Route::post('/editar/{id}', [VeiculoController::class, 'update'])->name('atualizar_veiculo');
+        Route::get('/editar/{veiculo}', [VeiculoController::class, 'show']);
+        Route::put('/editar/{veiculo}', [VeiculoController::class, 'update'])->name('atualizar_veiculo');
         Route::get('/novo', [VeiculoController::class, 'getBrandsAndModels']);
         Route::post('/novo', [VeiculoController::class, 'store'])->name('criar_veiculo');
         Route::delete('/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
