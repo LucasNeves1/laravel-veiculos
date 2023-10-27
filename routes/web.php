@@ -27,9 +27,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('marcas')->group(function () {
-        Route::get('/', [BrandController::class, 'index'])->name('marcas');
+        Route::get('/', [BrandController::class, 'index'])->name('marcas.list');
+        Route::get('/editar/{brand}', [BrandController::class, 'show']);
+        Route::put('/editar/{brand}', [BrandController::class, 'update'])->name('update_brand');
         Route::get('/nova', [BrandController::class, 'create']);
         Route::post('/nova', [BrandController::class, 'store'])->name('criar_marca');
+        Route::delete('/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
     });
 
     //Route::get('/modelos/novo', [ModelsController::class, 'index']);
