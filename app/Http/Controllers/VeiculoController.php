@@ -21,11 +21,11 @@ class VeiculoController extends Controller
     public function index()
     {
         $vehicles = Veiculo::with(['brand', 'model'])->get();
-        return view('veiculos.list', ['vehicles' => $vehicles]);
+        return view('vehicle.list', ['vehicles' => $vehicles]);
     }
 
     public function create() {
-        return view('veiculos.create');
+        return view('vehicle.create');
     }
 
     public function show($id)
@@ -33,7 +33,7 @@ class VeiculoController extends Controller
         $veiculo = Veiculo::find($id);
 
         if ($veiculo) {
-            return view('veiculos.update', ['veiculo' => $veiculo]);
+            return view('vehicle.update', ['veiculo' => $veiculo]);
         } 
     }
 
@@ -44,7 +44,7 @@ class VeiculoController extends Controller
             'price' => $request->price,
             'year' => $request->year,
         ]);
-        return redirect()->route('veiculos.list')->with('success', 'Veículo criado com sucesso!');
+        return redirect()->route('vehicle.list')->with('success', 'Veículo criado com sucesso!');
     }
 
     public function update(Request $request, Veiculo $veiculo)
@@ -63,14 +63,14 @@ class VeiculoController extends Controller
             'year' => $request->year,
         ]);
 
-        return redirect()->route('veiculos.list')->with('success', 'Veículo atualizado com sucesso!');
+        return redirect()->route('vehicle.list')->with('success', 'Veículo atualizado com sucesso!');
     }
 
 
     public function destroy(Veiculo $veiculo)
     {
         $veiculo->delete();
-        return redirect()->route('veiculos.list')->with('success', 'Veículo excluído com sucesso!');
+        return redirect()->route('vehicle.list')->with('success', 'Veículo excluído com sucesso!');
     }
 
 
@@ -82,6 +82,6 @@ class VeiculoController extends Controller
     public function getBrandsAndModels() {
         $brands = app('App\Http\Controllers\BrandController')->getAll();
         $models = app('App\Http\Controllers\ModelsController')->getAll();
-        return view('veiculos.create', ['brands' => $brands, 'models' => $models]);
+        return view('vehicle.create', ['brands' => $brands, 'models' => $models]);
     }
 }

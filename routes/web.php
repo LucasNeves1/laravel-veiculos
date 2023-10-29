@@ -27,32 +27,32 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('marcas')->group(function () {
-        Route::get('/', [BrandController::class, 'index'])->name('marcas.list');
+        Route::get('/', [BrandController::class, 'index'])->name('brand.list');
         Route::get('/editar/{brand}', [BrandController::class, 'show']);
-        Route::put('/editar/{brand}', [BrandController::class, 'update'])->name('update_brand');
+        Route::put('/editar/{brand}', [BrandController::class, 'update'])->name('brand.update');
         Route::get('/nova', [BrandController::class, 'create']);
-        Route::post('/nova', [BrandController::class, 'store'])->name('criar_marca');
+        Route::post('/nova', [BrandController::class, 'store'])->name('brand.create');
         Route::delete('/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
     });
 
     //Route::get('/modelos/novo', [ModelsController::class, 'index']);
 
     Route::prefix('modelos')->group(function () {
-        Route::get('/', [ModelsController::class, 'index'])->name('modelos.list');
+        Route::get('/', [ModelsController::class, 'index'])->name('model.list');
         Route::get('/novo', [ModelsController::class, 'create']);
-        Route::post('/novo', [ModelsController::class, 'store'])->name('criar_modelo');
+        Route::post('/novo', [ModelsController::class, 'store'])->name('model.create');
         Route::get('/editar/{modelo}', [ModelsController::class, 'show']);
-        Route::put('/editar/{modelo}', [ModelsController::class, 'update'])->name('atualizar_modelo');
-        Route::delete('/{modelo}', [ModelsController::class, 'destroy'])->name('modelo.destroy');
+        Route::put('/editar/{modelo}', [ModelsController::class, 'update'])->name('model.update');
+        Route::delete('/{modelo}', [ModelsController::class, 'destroy'])->name('model.destroy');
     });
 
     Route::prefix('veiculos')->group(function () {
-        Route::get('/', [VeiculoController::class, 'index'])->name('veiculos.list');
+        Route::get('/', [VeiculoController::class, 'index'])->name('vehicle.list');
         Route::get('/editar/{veiculo}', [VeiculoController::class, 'show']);
-        Route::put('/editar/{veiculo}', [VeiculoController::class, 'update'])->name('atualizar_veiculo');
+        Route::put('/editar/{veiculo}', [VeiculoController::class, 'update'])->name('vehicle.update');
         Route::get('/novo', [VeiculoController::class, 'getBrandsAndModels']);
-        Route::post('/novo', [VeiculoController::class, 'store'])->name('criar_veiculo');
-        Route::delete('/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
+        Route::post('/novo', [VeiculoController::class, 'store'])->name('vehicle.create');
+        Route::delete('/{veiculo}', [VeiculoController::class, 'destroy'])->name('vehicle.destroy');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

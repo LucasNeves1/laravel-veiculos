@@ -22,22 +22,22 @@ class ModelsController extends Controller
     {
         $models = Models::all(); 
         $brands = app('App\Http\Controllers\BrandController')->index()->getData(); 
-        return view('modelos.list', ['brands' => $brands, 'models' => $models]);
+        return view('model.list', ['brands' => $brands, 'models' => $models]);
     }
 
 
     public function create() {
         $models = Models::all(); 
         $brands = app('App\Http\Controllers\BrandController')->getAll(); 
-        return view('modelos.create', ['brands' => $brands, 'models' => $models]);
+        return view('model.create', ['brands' => $brands, 'models' => $models]);
     }
 
     public function show($id)
     {
-        $modelo = Models::find($id);
+        $model = Models::find($id);
 
-        if ($modelo) {
-            return view('modelos.update', ['modelo' => $modelo]);
+        if ($model) {
+            return view('model.update', ['modelo' => $model]);
         } 
     }
 
@@ -46,29 +46,29 @@ class ModelsController extends Controller
             'name' => $request->name,
             'brand_id' => $request->brand_id,
         ]);
-        return redirect()->route('modelos.list')->with('success', 'Modelo criado com sucesso!');
+        return redirect()->route('model.list')->with('success', 'Modelo criado com sucesso!');
     }
 
-    public function update(Request $request, Models $modelo)
+    public function update(Request $request, Models $model)
     {
         $request->validate([
             'brand_id' => 'required',
             'name' => 'required',
         ]);
 
-        $modelo->update([
+        $model->update([
             'brand_id' => $request->brand_id,
             'name' => $request->name,
         ]);
 
-        return redirect()->route('modelos.list')->with('success', 'Modelo atualizado com sucesso!');
+        return redirect()->route('model.list')->with('success', 'Modelo atualizado com sucesso!');
     }
 
 
-    public function destroy(Models $modelo)
+    public function destroy(Models $model)
     {
-        $modelo->delete();
-        return redirect()->route('modelos.list')->with('success', 'Modelo excluído com sucesso!');
+        $model->delete();
+        return redirect()->route('model.list')->with('success', 'Modelo excluído com sucesso!');
     }
 
     public function getAll() {
